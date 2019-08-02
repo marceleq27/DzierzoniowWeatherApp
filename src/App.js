@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import GlobalStyle from "../src/GlobalStyle";
+import SearchBar from "../src/components/SearchBar";
 import sun from "../src/assets/sunny.gif";
 import lightstorm from "../src/assets/lightstorm.gif";
+
+const APIddz =
+  "http://api.openweathermap.org/data/2.5/weather?q=Dzierżoniów&APPID=fd0c7244de93ccf1ff991b24b2358a5a&units=metric";
 
 const StyledMain = styled.main`
   height: 100vh;
@@ -79,13 +83,11 @@ class App extends Component {
     date: "",
     weather: "",
     err: "",
-    appPicture: ""
+    appPicture: "",
+    city: ""
   };
   componentWillMount() {
-    const API =
-      "http://api.openweathermap.org/data/2.5/weather?q=Dzierżoniów&APPID=fd0c7244de93ccf1ff991b24b2358a5a&units=metric";
-
-    fetch(API)
+    fetch(APIddz)
       .then(response => {
         if (response.ok) {
           return response;
@@ -107,7 +109,8 @@ class App extends Component {
           maxtemp: Math.ceil(data.main.temp_max),
           wind: data.wind.speed,
           date: date,
-          weather: data.weather.main
+          weather: data.weather.main,
+          city: data.name
         });
       })
 
@@ -131,12 +134,47 @@ class App extends Component {
         });
     }
   }
+  getWeather = e => {
+    const city = e.target.elements.city.value;
+    const country = e.target.elements.country.value;
+    e.preventDefault();
+    fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=fd0c7244de93ccf1ff991b24b2358a5a&units=metric`
+    )
+      .then(response => {
+        if (response.ok) {
+          return response;
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (city && country) {
+          let hours = new Date().getHours();
+          let minutes = new Date().getMinutes();
+          const date = new Date().toLocaleDateString();
+          this.setState({
+            temp: Math.ceil(response.main.temp),
+            time: `${hours < 10 ? `0${hours}` : hours}:${
+              minutes < 10 ? `0${minutes}` : minutes
+            }`,
+            pressure: response.main.pressure,
+            mintemp: Math.ceil(response.main.temp_min),
+            maxtemp: Math.ceil(response.main.temp_max),
+            wind: response.wind.speed,
+            date: date,
+            weather: response.weather.main,
+            city: response.name
+          });
+        }
+      });
+  };
   render() {
     const { appPicture, weather } = this.state;
 
     return (
       <>
         <GlobalStyle />
+        <SearchBar weather={this.getWeather} />
         <StyledMain>
           <StyledPicture
             style={{
@@ -147,7 +185,7 @@ class App extends Component {
           />
           <StyledP>{weather === "Rain" ? `${appPicture}` : ""}</StyledP>
           <StyledDiv>
-            <h1>Dzierżoniów</h1>
+            <h1>{this.state.city}</h1>
             <h2>{this.state.temp}&deg;C</h2>
             <h3>Dziś ciśnienie wynosi: {this.state.pressure}hPa</h3>
             <h3>Minimalna temperatura: {this.state.mintemp}&deg;C</h3>
