@@ -10,7 +10,7 @@ const Hamburger = styled.button`
   top: 3%;
   left: 7%;
   z-index: 100;
-  background-color: #fff;
+  background-color: transparent;
   &.hamburger {
     padding: 0;
   }
