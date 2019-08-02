@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/DzierzoniowWeatherApp/static/css/main.7a78a388.chunk.css",
-    "main.js": "/DzierzoniowWeatherApp/static/js/main.36e56706.chunk.js",
-    "main.js.map": "/DzierzoniowWeatherApp/static/js/main.36e56706.chunk.js.map",
+    "main.js": "/DzierzoniowWeatherApp/static/js/main.98b860ff.chunk.js",
+    "main.js.map": "/DzierzoniowWeatherApp/static/js/main.98b860ff.chunk.js.map",
     "runtime~main.js": "/DzierzoniowWeatherApp/static/js/runtime~main.6d3fdd40.js",
     "runtime~main.js.map": "/DzierzoniowWeatherApp/static/js/runtime~main.6d3fdd40.js.map",
     "static/js/2.de6abf1c.chunk.js": "/DzierzoniowWeatherApp/static/js/2.de6abf1c.chunk.js",
     "static/js/2.de6abf1c.chunk.js.map": "/DzierzoniowWeatherApp/static/js/2.de6abf1c.chunk.js.map",
     "index.html": "/DzierzoniowWeatherApp/index.html",
-    "precache-manifest.a1fdf57d5f3d355efa533f4ebf6cb049.js": "/DzierzoniowWeatherApp/precache-manifest.a1fdf57d5f3d355efa533f4ebf6cb049.js",
+    "precache-manifest.64a91ca1a837964ccef8b73d75027326.js": "/DzierzoniowWeatherApp/precache-manifest.64a91ca1a837964ccef8b73d75027326.js",
     "service-worker.js": "/DzierzoniowWeatherApp/service-worker.js",
     "static/css/main.7a78a388.chunk.css.map": "/DzierzoniowWeatherApp/static/css/main.7a78a388.chunk.css.map",
     "static/media/lightstorm.gif": "/DzierzoniowWeatherApp/static/media/lightstorm.3c9c9939.gif",

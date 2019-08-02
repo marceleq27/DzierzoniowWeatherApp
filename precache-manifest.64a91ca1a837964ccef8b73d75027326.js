@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f9493e00b640737b021df021ed8f3fb6",
+    "revision": "88cdbec1f7326c45ccf90e2d3a57a7ea",
     "url": "/DzierzoniowWeatherApp/index.html"
   },
   {
-    "revision": "2ac076361490d076d3a1",
+    "revision": "26c759367a76ae7b687f",
     "url": "/DzierzoniowWeatherApp/static/css/main.7a78a388.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DzierzoniowWeatherApp/static/js/2.de6abf1c.chunk.js"
   },
   {
-    "revision": "2ac076361490d076d3a1",
-    "url": "/DzierzoniowWeatherApp/static/js/main.36e56706.chunk.js"
+    "revision": "26c759367a76ae7b687f",
+    "url": "/DzierzoniowWeatherApp/static/js/main.98b860ff.chunk.js"
   },
   {
     "revision": "8e3a3702dc6a0d84aba3",
