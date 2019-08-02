@@ -6,7 +6,7 @@ import sun from "../src/assets/sunny.gif";
 import lightstorm from "../src/assets/lightstorm.gif";
 
 const APIddz =
-  "http://api.openweathermap.org/data/2.5/weather?q=Dzierżoniów&APPID=fd0c7244de93ccf1ff991b24b2358a5a&units=metric";
+  "https://api.openweathermap.org/data/2.5/weather?q=Dzierżoniów&APPID=fd0c7244de93ccf1ff991b24b2358a5a&units=metric";
 
 const StyledMain = styled.main`
   height: 100vh;
@@ -150,7 +150,7 @@ class App extends Component {
     const country = e.target.elements.country.value;
     e.preventDefault();
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=fd0c7244de93ccf1ff991b24b2358a5a&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=fd0c7244de93ccf1ff991b24b2358a5a&units=metric`
     )
       .then(response => {
         if (response.ok) {
