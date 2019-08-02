@@ -1,10 +1,10 @@
 {
-  "homepage": "https://yourusername.github.io/DzierzoniowWeatherApp",
+  "homepage": "https://marceleq27.github.io/DzierzoniowWeatherApp",
   "name": "weatherapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^2.1.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
     "react": "^16.8.6",
@@ -33,5 +33,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-cli": "^3.3.6"
+  }
 }
