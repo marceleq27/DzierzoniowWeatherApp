@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import GlobalStyle from "../src/GlobalStyle";
-import SearchBar from "../src/components/SearchBar";
+import SearchBar from "./components/SearchBar/SearchBar";
 import sun from "../src/assets/sunny.gif";
 import lightstorm from "../src/assets/lightstorm.gif";
 
@@ -68,6 +68,17 @@ const StyledP = styled.p`
   color: #fff;
   z-index: 50;
   transform: translateX(-50%);
+`;
+
+const StyledDate = styled.div`
+  background-color: #000;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    color: #fff;
+  }
 `;
 
 class App extends Component {
@@ -191,8 +202,10 @@ class App extends Component {
             <h3>Minimalna temperatura: {this.state.mintemp}&deg;C</h3>
             <h3>Maksymalna temperatura: {this.state.maxtemp}&deg;C</h3>
             <h3>Wiatr: {this.state.wind} km/h</h3>
-            <p>Godzina {this.state.time}</p>
-            <p>{this.state.date}</p>
+            <StyledDate>
+              <p>Godzina {this.state.time}</p>
+              <p>{this.state.date}</p>
+            </StyledDate>
           </StyledDiv>
         </StyledMain>
         {console.log(

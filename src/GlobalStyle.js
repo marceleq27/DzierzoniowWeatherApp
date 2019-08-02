@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family:'Rubik',sans-serif;
   }
+  body{
+    height:100vh;
+    overflow:hidden;
+  }
 `;
 
 export default GlobalStyle;
