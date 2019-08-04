@@ -86,8 +86,6 @@ class App extends Component {
     temp: "",
     mintemp: "",
     maxtemp: "",
-    sunrise: "",
-    sunset: "",
     time: "",
     wind: "",
     pressure: "",
@@ -120,31 +118,32 @@ class App extends Component {
           maxtemp: Math.ceil(data.main.temp_max),
           wind: data.wind.speed,
           date: date,
-          weather: data.weather.main,
+          weather: data.weather[0].main,
           city: data.name
         });
       })
-
+      .then(this.setPicture())
       .catch(err => console.log(err));
   }
-  componentDidMount() {
-    switch (this.state.weather) {
-      case "Rain":
-        this.setState({
-          appPicture: "Rain. Stay at home.."
-        });
-        break;
-      case "Lightstorm":
-        this.setState({
-          appPicture: `${lightstorm}`
-        });
-        break;
-      default:
-        this.setState({
-          appPicture: `${sun}`
-        });
+
+  setPicture = () => {
+    if (this.state.weather === "Rain") {
+      this.setState({
+        appPicture: "Rain. Stay at home.."
+      });
+      const picture = document.querySelector(".picture");
+      picture.style.backgroundImage = "none";
+      picture.style.backgroundColor = "#000";
+    } else if (this.state.weather === "Lightstorm") {
+      this.setState({
+        appPicture: `${lightstorm}`
+      });
+    } else {
+      this.setState({
+        appPicture: `${sun}`
+      });
     }
-  }
+  };
   getWeather = e => {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
@@ -173,11 +172,13 @@ class App extends Component {
             maxtemp: Math.ceil(response.main.temp_max),
             wind: response.wind.speed,
             date: date,
-            weather: response.weather.main,
+            weather: response.weather[0].main,
             city: response.name
           });
         }
-      });
+      })
+      .then(this.setPicture())
+      .catch(err => console.log(err));
   };
   render() {
     const { appPicture, weather } = this.state;
@@ -188,6 +189,7 @@ class App extends Component {
         <SearchBar weather={this.getWeather} />
         <StyledMain>
           <StyledPicture
+            className="picture"
             style={{
               backgroundImage:
                 appPicture === "Rain" ? "none" : `url(${appPicture})`,
