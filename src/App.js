@@ -174,6 +174,12 @@ class App extends Component {
           let hours = new Date().getHours();
           let minutes = new Date().getMinutes();
           const date = new Date().toLocaleDateString();
+          let sunriseTime = new Date(
+            response.sys.sunrise * 1000
+          ).toLocaleTimeString();
+          let sunsetTime = new Date(
+            response.sys.sunset * 1000
+          ).toLocaleTimeString();
           this.setState({
             temp: Math.ceil(response.main.temp),
             time: `${hours < 10 ? `0${hours}` : hours}:${
@@ -186,8 +192,8 @@ class App extends Component {
             date: date,
             weather: response.weather[0].main,
             city: response.name,
-            sunset: response.sys.sunset,
-            sunrise: response.sys.sunrise
+            sunset: sunsetTime,
+            sunrise: sunriseTime
           });
         }
         this.setPicture();
