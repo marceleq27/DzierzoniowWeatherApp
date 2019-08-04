@@ -33,6 +33,7 @@ const StyledAside = styled.aside`
   opacity: 0;
   top: 0;
   left: 0;
+  z-index: 10;
   &.active {
     opacity: 1;
     transform: scale(1.3);

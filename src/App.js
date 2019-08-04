@@ -78,6 +78,15 @@ const StyledDate = styled.div`
   justify-content: space-between;
   p {
     color: #fff;
+    z-index: 15;
+  }
+`;
+
+const StyledTime = styled(StyledDate)`
+  p {
+    bottom: 6%;
+    color: #000;
+    z-index: 5;
   }
 `;
 
@@ -86,6 +95,8 @@ class App extends Component {
     temp: "",
     mintemp: "",
     maxtemp: "",
+    sunset: "",
+    sunrise: "",
     time: "",
     wind: "",
     pressure: "",
@@ -95,6 +106,7 @@ class App extends Component {
     appPicture: "",
     city: ""
   };
+
   componentWillMount() {
     fetch(APIddz)
       .then(response => {
@@ -107,6 +119,10 @@ class App extends Component {
         let hours = new Date().getHours();
         let minutes = new Date().getMinutes();
         const date = new Date().toLocaleDateString();
+        let sunriseTime = new Date(
+          data.sys.sunrise * 1000
+        ).toLocaleTimeString();
+        let sunsetTime = new Date(data.sys.sunset * 1000).toLocaleTimeString();
         this.setState({
           err: false,
           temp: Math.ceil(data.main.temp),
@@ -119,29 +135,25 @@ class App extends Component {
           wind: data.wind.speed,
           date: date,
           weather: data.weather[0].main,
-          city: data.name
+          city: data.name,
+          sunset: sunsetTime,
+          sunrise: sunriseTime
         });
+        this.setPicture();
       })
-      .then(this.setPicture())
       .catch(err => console.log(err));
   }
-
   setPicture = () => {
+    const picture = document.querySelector(".picture");
     if (this.state.weather === "Rain") {
       this.setState({
         appPicture: "Rain. Stay at home.."
       });
-      const picture = document.querySelector(".picture");
       picture.style.backgroundImage = "none";
       picture.style.backgroundColor = "#000";
     } else if (this.state.weather === "Lightstorm") {
-      this.setState({
-        appPicture: `${lightstorm}`
-      });
-    } else {
-      this.setState({
-        appPicture: `${sun}`
-      });
+      picture.style.backgroundImage = `url(${lightstorm})`;
+      picture.style.backgroundColor = "transparent";
     }
   };
   getWeather = e => {
@@ -173,41 +185,53 @@ class App extends Component {
             wind: response.wind.speed,
             date: date,
             weather: response.weather[0].main,
-            city: response.name
+            city: response.name,
+            sunset: response.sys.sunset,
+            sunrise: response.sys.sunrise
           });
         }
+        this.setPicture();
       })
-      .then(this.setPicture())
       .catch(err => console.log(err));
   };
   render() {
-    const { appPicture, weather } = this.state;
+    const {
+      appPicture,
+      weather,
+      city,
+      temp,
+      mintemp,
+      maxtemp,
+      pressure,
+      wind,
+      time,
+      date,
+      sunset,
+      sunrise
+    } = this.state;
 
     return (
       <>
         <GlobalStyle />
         <SearchBar weather={this.getWeather} />
         <StyledMain>
-          <StyledPicture
-            className="picture"
-            style={{
-              backgroundImage:
-                appPicture === "Rain" ? "none" : `url(${appPicture})`,
-              backgroundColor: appPicture === "Rain" ? "#000" : "none"
-            }}
-          />
+          <StyledPicture className="picture" />
           <StyledP>{weather === "Rain" ? `${appPicture}` : ""}</StyledP>
           <StyledDiv>
-            <h1>{this.state.city}</h1>
-            <h2>{this.state.temp}&deg;C</h2>
-            <h3>Dziś ciśnienie wynosi: {this.state.pressure}hPa</h3>
-            <h3>Minimalna temperatura: {this.state.mintemp}&deg;C</h3>
-            <h3>Maksymalna temperatura: {this.state.maxtemp}&deg;C</h3>
-            <h3>Wiatr: {this.state.wind} km/h</h3>
+            <h1>{city}</h1>
+            <h2>{temp}&deg;C</h2>
+            <h3>Dziś ciśnienie wynosi: {pressure}hPa</h3>
+            <h3>Minimalna temperatura: {mintemp}&deg;C</h3>
+            <h3>Maksymalna temperatura: {maxtemp}&deg;C</h3>
+            <h3>Wiatr: {wind} km/h</h3>
             <StyledDate>
-              <p>Godzina {this.state.time}</p>
-              <p>{this.state.date}</p>
+              <p>Godzina {time}</p>
+              <p>{date}</p>
             </StyledDate>
+            <StyledTime>
+              <p>Wschód: {sunrise}</p>
+              <p>Zachód: {sunset}</p>
+            </StyledTime>
           </StyledDiv>
         </StyledMain>
         {console.log(
