@@ -154,6 +154,10 @@ class App extends Component {
     } else if (this.state.weather === "Lightstorm") {
       picture.style.backgroundImage = `url(${lightstorm})`;
       picture.style.backgroundColor = "transparent";
+    } else {
+      const picture = document.querySelector(".picture");
+      picture.style.backgroundImage = `url(${sun})`;
+      picture.style.backgroundColor = "transparent";
     }
   };
   getWeather = e => {
@@ -195,8 +199,8 @@ class App extends Component {
             sunset: sunsetTime,
             sunrise: sunriseTime
           });
+          this.setPicture();
         }
-        this.setPicture();
       })
       .catch(err => console.log(err));
   };
