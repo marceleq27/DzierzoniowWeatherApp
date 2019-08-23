@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/DzierzoniowWeatherApp/precache-manifest.952caff32c0c95a63c173023991caf53.js"
+  "/DzierzoniowWeatherApp/precache-manifest.ddb29f9e65282bf22921b05336625d04.js"
 );
 
 self.addEventListener('message', (event) => {
