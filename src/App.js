@@ -22,6 +22,9 @@ const StyledPicture = styled.picture`
   background-size: 100%;
   color: #fff;
   text-align: center;
+  @media (min-width: 1024px) {
+    background-position: center 40%;
+  }
 `;
 
 const StyledDiv = styled.div`
